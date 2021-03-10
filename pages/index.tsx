@@ -35,6 +35,7 @@ export default function Home({ tools }: Props) {
             <Typography variant="body1">
                 Welcome to Wrenwood South HOA's resources! This website hosts a collection of important documents.
             </Typography>
+            <Typography variant="body1">[ An announcement board will go here. ]</Typography>
         </NavDrawer>
     );
 }
