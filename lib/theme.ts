@@ -4,12 +4,10 @@ import '@material-ui/core/styles';
 
 declare module '@material-ui/core/styles/createPalette' {
     interface Palette {
-        priority: Palette['primary'];
         gray: Palette['primary'];
         shadow: Palette['primary'];
     }
     interface PaletteOptions {
-        priority: PaletteOptions['primary'];
         gray: PaletteOptions['primary'];
         shadow: PaletteOptions['primary'];
     }
@@ -67,20 +65,14 @@ const THEME: ThemeOptions = {
     },
     palette: {
         primary: {
-            light: '#d0df63',
-            main: '#016848',
-            dark: '#003b21',
+            light: '#DCE4ED',
+            main: '#66a2eb',
+            dark: '#777',
         },
         secondary: {
-            light: '#577984',
-            main: '#1a3a44',
+            light: '#d8ddea',
+            main: '#7e9835',
             dark: '#00151d',
-            contrastText: '#d8ddea',
-        },
-        priority: {
-            light: '#2f78c5',
-            main: '#d35400',
-            dark: '#8b0000',
         },
         gray: {
             light: '#EEEEEE',

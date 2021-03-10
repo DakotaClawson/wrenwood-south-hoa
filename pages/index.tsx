@@ -1,9 +1,9 @@
 import { GetServerSideProps } from 'next';
-import Link from 'next/link';
-import Image from 'next/image';
-import { makeStyles, createStyles, Typography, Theme, Paper, ListItem, List, Grid, Button } from '@material-ui/core';
-
+// import Link from 'next/link';
+// import Image from 'next/image';
+import NavDrawer from '../components/NavDrawer';
 import { tools } from '../lib/tools';
+import { makeStyles, createStyles, Typography, Theme } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -12,9 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
             boxShadow: `0 0.125em 0.25em 0 ${theme.palette.shadow.main}, 0 0.1875em 0.625em 0 ${theme.palette.shadow.main}`,
             padding: '2em',
         },
-        root: {
-            padding: '2em',
-        },
+        root: {},
         linkButton: {
             marginLeft: '1em',
         },
@@ -26,41 +24,18 @@ interface Props {
 }
 
 export default function Home({ tools }: Props) {
+    console.log(tools);
     const classes = useStyles();
 
     return (
-        <Grid container spacing={4} direction="column" className={classes.root}>
-            <Grid item>
-                <Typography variant="h4" component="h1" gutterBottom>
-                    Next.js example
-                </Typography>
-            </Grid>
-            <Grid item container spacing={4} direction="column" xs={12} alignItems="center">
-                <Grid container item alignContent="center" justify="center">
-                    <Typography variant="h5">Tools</Typography>
-                </Grid>
-                <Grid item>
-                    <Paper className={classes.paper}>
-                        <List aria-label={tools.join(', ')}>
-                            {tools.map(({ name, image }) => (
-                                <ListItem key={name}>
-                                    <Grid container alignItems="center" justify="space-between">
-                                        {/* NextJS Image optimization example. Props are src(any file under the public dir), width, and height */}
-                                        {image && <Image {...image} />}
-                                        <Typography variant="body1">{name}</Typography>
-                                        <Link href="/tool/[name]" as={`/tool/${name}`}>
-                                            <Button variant="contained" color="primary" className={classes.linkButton}>
-                                                Learn more
-                                            </Button>
-                                        </Link>
-                                    </Grid>
-                                </ListItem>
-                            ))}
-                        </List>
-                    </Paper>
-                </Grid>
-            </Grid>
-        </Grid>
+        <NavDrawer>
+            <Typography variant="h3" color="primary" className={classes.root}>
+                Welcome
+            </Typography>
+            <Typography variant="body1">
+                Welcome to Wrenwood South HOA's resources! This website hosts a collection of important documents.
+            </Typography>
+        </NavDrawer>
     );
 }
 
