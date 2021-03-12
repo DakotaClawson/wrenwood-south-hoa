@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
-import clsx from 'clsx';
-import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -8,26 +7,23 @@ import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from '@material-ui/core';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
-const drawerWidth = 240;
+const drawerWidth = 215;
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             display: 'flex',
+            backgroundColor: theme.palette.secondary.light,
         },
         appBar: {
-            transition: theme.transitions.create(['margin', 'width'], {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.leavingScreen,
-            }),
+            zIndex: theme.zIndex.drawer + 1,
+        },
+        drawerContainer: {
+            overflow: 'auto',
         },
         appBarShift: {
             width: `calc(100% - ${drawerWidth}px)`,
@@ -37,19 +33,13 @@ const useStyles = makeStyles((theme: Theme) =>
                 duration: theme.transitions.duration.enteringScreen,
             }),
         },
-        menuButton: {
-            marginRight: theme.spacing(2),
-            color: theme.palette.gray.light,
-        },
-        hide: {
-            display: 'none',
-        },
         drawer: {
             width: drawerWidth,
             flexShrink: 0,
         },
         drawerPaper: {
             width: drawerWidth,
+            backgroundColor: theme.palette.secondary.light,
         },
         drawerHeader: {
             display: 'flex',
@@ -62,11 +52,6 @@ const useStyles = makeStyles((theme: Theme) =>
         content: {
             flexGrow: 1,
             padding: theme.spacing(3),
-            transition: theme.transitions.create('margin', {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.leavingScreen,
-            }),
-            marginLeft: -drawerWidth,
         },
         contentShift: {
             transition: theme.transitions.create('margin', {
@@ -90,36 +75,12 @@ type Props = {
 
 export default function NavDrawer({ children }: Props) {
     const classes = useStyles();
-    const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
-
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
 
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBar
-                position="fixed"
-                className={clsx(classes.appBar, {
-                    [classes.appBarShift]: open,
-                })}
-                color="secondary"
-            >
+            <AppBar position="fixed" className={classes.appBar} color="secondary">
                 <Toolbar>
-                    <IconButton
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        className={clsx(classes.menuButton, open && classes.hide)}
-                    >
-                        <MenuIcon />
-                    </IconButton>
                     <Typography className={classes.header} variant="h6" noWrap>
                         Wrenwood South HOA Resources
                     </Typography>
@@ -127,60 +88,44 @@ export default function NavDrawer({ children }: Props) {
             </AppBar>
             <Drawer
                 className={classes.drawer}
-                variant="persistent"
-                anchor="left"
-                open={open}
+                variant="permanent"
                 classes={{
                     paper: classes.drawerPaper,
                 }}
             >
-                <div className={classes.drawerHeader}>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
+                <Toolbar />
+                <div className={classes.drawerContainer}>
+                    <Divider />
+                    <List>
+                        <Link style={{ textDecoration: 'none' }} href="/">
+                            <ListItem button>
+                                <ListItemText>Home</ListItemText>
+                            </ListItem>
+                        </Link>
+                        <Link style={{ textDecoration: 'none' }} href="/governingdocuments">
+                            <ListItem button>
+                                <ListItemText>Governing Documents</ListItemText>
+                            </ListItem>
+                        </Link>
+                        <Link style={{ textDecoration: 'none' }} href="/annualmeeting">
+                            <ListItem button>
+                                <ListItemText>Annual Meeting</ListItemText>
+                            </ListItem>
+                        </Link>
+                        <Link style={{ textDecoration: 'none' }} href="/financial">
+                            <ListItem button>
+                                <ListItemText>Financial</ListItemText>
+                            </ListItem>
+                        </Link>
+                        <Link style={{ textDecoration: 'none' }} href="/forms">
+                            <ListItem button>
+                                <ListItemText>Forms</ListItemText>
+                            </ListItem>
+                        </Link>
+                    </List>
                 </div>
-                <Divider />
-                <List>
-                    {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))} */}
-                    <Link style={{ textDecoration: 'none' }} href="/">
-                        <ListItem button>
-                            <ListItemText>Home</ListItemText>
-                        </ListItem>
-                    </Link>
-                    <Link style={{ textDecoration: 'none' }} href="/annualmeetingminutes">
-                        <ListItem button>
-                            <ListItemText>Annual Meeting Minutes</ListItemText>
-                        </ListItem>
-                    </Link>
-                    <Link style={{ textDecoration: 'none' }} href="/boardmeetingminutes">
-                        <ListItem button>
-                            <ListItemText>Board Meeting Minutes</ListItemText>
-                        </ListItem>
-                    </Link>
-                    <Link style={{ textDecoration: 'none' }} href="/financial">
-                        <ListItem button>
-                            <ListItemText>Financial</ListItemText>
-                        </ListItem>
-                    </Link>
-                    <Link style={{ textDecoration: 'none' }} href="/governingdocuments">
-                        <ListItem button>
-                            <ListItemText>Governing Documents</ListItemText>
-                        </ListItem>
-                    </Link>
-                </List>
             </Drawer>
-            <main
-                className={
-                    (classes.main,
-                    clsx(classes.content, {
-                        [classes.contentShift]: open,
-                    }))
-                }
-            >
+            <main className={classes.content}>
                 <div className={classes.drawerHeader} />
                 {children}
             </main>

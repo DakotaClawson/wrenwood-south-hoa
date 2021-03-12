@@ -1,12 +1,13 @@
-import NavDrawer from '../components/NavDrawer';
+import Layout from '../components/Layout';
 import { Typography } from '@material-ui/core';
 
 export default function Financial() {
     return (
-        <NavDrawer>
+        <Layout>
             <Typography variant="h3" color="primary">
                 Financial
             </Typography>
-        </NavDrawer>
+            <Typography variant="body1">Coming soon...</Typography>
+        </Layout>
     );
 }
