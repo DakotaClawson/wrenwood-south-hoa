@@ -67,10 +67,10 @@ const THEME: ThemeOptions = {
         primary: {
             light: '#DCE4ED',
             main: '#66a2eb',
-            dark: '#777',
+            dark: '#284b75',
         },
         secondary: {
-            light: '#d8ddea',
+            light: '#fffcf0',
             main: '#7e9835',
             dark: '#00151d',
         },

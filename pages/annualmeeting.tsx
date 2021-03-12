@@ -1,13 +1,13 @@
-import NavDrawer from '../components/NavDrawer';
+import Layout from '../components/Layout';
 import { Typography } from '@material-ui/core';
 
-export default function Forms() {
+export default function AnnualMeeting() {
     return (
-        <NavDrawer>
+        <Layout>
             <Typography variant="h3" color="primary">
-                Forms
+                Annual Meeting
             </Typography>
             <Typography variant="body1">Coming soon...</Typography>
-        </NavDrawer>
+        </Layout>
     );
 }
