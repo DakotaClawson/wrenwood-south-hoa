@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
 import Head from 'next/head';
 import NavDrawer from './NavDrawer';
-import { makeStyles, createStyles, Theme } from '@material-ui/core';
+import { makeStyles, createStyles } from '@material-ui/core';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
     createStyles({
         root: {
             margin: '0px 20px 20px 20px',
